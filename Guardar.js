@@ -1,5 +1,4 @@
-function guardar(){
-
+function guardar() {
     db.collection("aprendices").add({
         ApellidoAcudiente: document.getElementById("ApellidoAcu").value,
         ApellidoAprendiz: document.getElementById("ApellidoApre").value,
@@ -20,13 +19,11 @@ function guardar(){
         Parentesco: document.getElementById("Parentesco").value,
         Programa: document.getElementById("Programa").value,
         TipoDocumento: document.getElementById("TipoDocumento").value
-        })
+    })
     .then((docRef) => {
-        console.log("Document written with ID: ", docRef.id);
-       
+        swal("¡Éxito!", "Los datos se han guardado correctamente", "success");
     })
     .catch((error) => {
-        console.error("Error adding document: ", error);
+        swal("¡Error!", "Hubo un problema al guardar los datos", "error");
     });
-    
 }
