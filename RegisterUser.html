@@ -14,29 +14,40 @@
   <div class="container">
     <div class="d-flex flex-wrap align-items-center justify-content-between justify-content-lg-start">
       <div class="col-6 col-lg-6 d-flex justify-content-lg-start mt-3 mt-lg-0">
-        <img src="Resources/LogoSENA.png" alt="Logo_SENA" width="auto" height="40" style="margin-top: 2%; margin-bottom: 10%;"/>
+        <img src="Resources/LogoSENA.png" alt="Logo_SENA" width="auto" height="40"
+          style="margin-top: 2%; margin-bottom: 10%;" />
       </div>
       <div class="col-6 col-lg-6 d-flex justify-content-end mt-3 mt-lg-0">
-        <img src="Resources/LogoFirebase.png" alt="Logo_Firebase" width="auto" height="40" style="margin-top: 2%; margin-bottom: 10%;"/>
+        <img src="Resources/LogoFirebase.png" alt="Logo_Firebase" width="auto" height="40"
+          style="margin-top: 2%; margin-bottom: 10%;" />
       </div>
     </div>
   </div>
 </header>
+
 <body>
   <div class="container">
     <br>
     <div class="row align-items-center">
       <div class="col-sm-6">
-          <h4 class="custom-form">Información del aprendiz</h4>
+        <h4 class="custom-form">Información del aprendiz</h4>
       </div>
       <div class="col-sm-6 d-flex justify-content-end">
-          <div class="py-4">
-              <button type="button" class="btn btn-secondary">Consultar</button>
-          </div>
+        <div class="py-4">
+          <a type="button" onclick="consultar()" class="btn btn-secondary">Consultar</a>
+        </div>
       </div>
     </div>
+    <!--
+    <div class="row align-items-center">
+      <div class="col">
+          <h3 id="printNombres"></h3>
+          <h3 id="printApellidos"></h3>
+      </div>
+    </div>
+     Consultar -->
     <div class="col-12 custom-form">
-      <form id="formulario_aprendiz" class="needs-validation"novalidate>
+      <form id="formulario_aprendiz" class="needs-validation" novalidate>
         <div class="row g-3">
           <div class="col-sm-6">
             <label id="" for="document" class="form-label">Tipo de documento</label>
@@ -68,8 +79,8 @@
           </div>
           <div class="col-md-6">
             <label id="" for="lastName" class="form-label">Apellido del aprendiz</label>
-            <input name="ApellidoApre" type="text" class="form-control" id="ApellidoApre" placeholder="Apellido aprendiz"
-              value="" required>
+            <input name="ApellidoApre" type="text" class="form-control" id="ApellidoApre"
+              placeholder="Apellido aprendiz" value="" required>
             <div class="invalid-feedback">
               Se requiere un apellido válido.
             </div>
@@ -77,7 +88,8 @@
           <div class="col-6">
             <label for="Nacimiento" class="form-label">Fecha de nacimiento</label>
             <div class="input-group has-validation">
-              <input name="FechaNacimiento" type="date" class="form-control" id="FechaNacimiento" placeholder="Fecha de nacimiento" required>
+              <input name="FechaNacimiento" type="date" class="form-control" id="FechaNacimiento"
+                placeholder="Fecha de nacimiento" required>
               <div class="invalid-feedback">
                 Se requiere una fecha válida.
               </div>
@@ -95,11 +107,11 @@
           <script>
             const inputFechaNacimiento = document.getElementById('FechaNacimiento');
             const inputEdad = document.getElementById('Edad');
-          
+
             inputFechaNacimiento.addEventListener('input', function () {
               const fechaNacimiento = new Date(this.value);
               const fechaActual = new Date();
-          
+
               if (isNaN(fechaNacimiento.getTime())) {
                 // La fecha ingresada no es válida
                 this.setCustomValidity('Se requiere una fecha válida.');
@@ -112,22 +124,22 @@
                 // La fecha ingresada es válida
                 this.setCustomValidity('');
                 this.parentElement.classList.remove('was-validated');
-          
+
                 // Calcular edad
                 const diff = fechaActual - fechaNacimiento;
                 const edad = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
                 inputEdad.value = edad;
               }
             });
-          
+
             inputEdad.addEventListener('input', function () {
               const edad = parseInt(this.value);
               const fechaNacimiento = new Date(inputFechaNacimiento.value);
               const fechaLimite = new Date(fechaNacimiento);
               fechaLimite.setFullYear(fechaNacimiento.getFullYear() + edad);
-          
+
               const fechaActual = new Date();
-          
+
               if (isNaN(edad) || edad < 0) {
                 // La edad ingresada no es válida
                 this.setCustomValidity('Se requiere una edad válida.');
@@ -509,7 +521,8 @@
           <div class="col-sm-6">
             <label for="Barrio" class="form-label">Barrio de residencia</label>
             <div class="input-group has-validation">
-              <input name="Barrio" type="text" class="form-control" id="Barrio" placeholder="Nombre del barrio" required>
+              <input name="Barrio" type="text" class="form-control" id="Barrio" placeholder="Nombre del barrio"
+                required>
               <div class="invalid-feedback">
                 Se requiere un barrio válida.
               </div>
@@ -518,8 +531,8 @@
           <div class="col-sm-6">
             <label for="direccion" class="form-label">Dirección de residencia</label>
             <div class="input-group has-validation">
-              <input name="Direccion" type="text" class="form-control" id="Direccion"
-                placeholder="Dirección residencia" required>
+              <input name="Direccion" type="text" class="form-control" id="Direccion" placeholder="Dirección residencia"
+                required>
               <div class="invalid-feedback">
                 Se requiere una direccion válida.
               </div>
@@ -562,7 +575,14 @@
           <div class="col-sm-6">
             <label for="Programa" class="form-label">Programa</label>
             <div class="input-group has-validation">
-              <input name="Programa" type="text" class="form-control" id="Programa" placeholder="Nombre del programa" required>
+                <select name="Programa" class="form-select" id="Programa" required>
+                  <option value="">Elegir...</option>
+                  <option value="Tecnólogo en ADSO">Tecnólogo en Análisis y Desarrollo de Software</option>
+                  <option value="Tecnologo en Finanzas">Tecnólogo en Administración Bancaria y de Instituciones Financieras</option>
+                  <option value="Tecnologo en Negocios">Tecnólogo en Gestión de Negocios Fiduciarios</option>
+                  <option value="Tecnologo en Contabilidad">Tecnólogo en Contabilidad y Finanzas</option>
+                  <option value="Tecnico en Documentacion">Técnico en Documentación y Registro de Operaciones Contables</option>
+                </select>
               <div class="invalid-feedback">
                 Se requiere un programa válido.
               </div>
@@ -571,7 +591,8 @@
           <div class="col-sm-12">
             <label for="colegio" class="form-label">Colegio donde curso el ultimo año de bachiller</label>
             <div class="input-group has-validation">
-              <input name="colegio" type="text" class="form-control" id="Colegio" placeholder="Nombre del colegio" required>
+              <input name="colegio" type="text" class="form-control" id="Colegio" placeholder="Nombre del colegio"
+                required>
               <div class="invalid-feedback">
                 Se requiere un colegio válido.
               </div>
@@ -581,7 +602,8 @@
           <div class="col-sm-6">
             <label for="NombreAcu" class="form-label">Nombre del acudiente</label>
             <div class="input-group has-validation">
-              <input name="NombreAcu" type="text" class="form-control" id="NombreAcu" placeholder="Nombre acudiente" required>
+              <input name="NombreAcu" type="text" class="form-control" id="NombreAcu" placeholder="Nombre acudiente"
+                required>
               <div class="invalid-feedback">
                 Se requiere un nombre válida.
               </div>
@@ -590,7 +612,8 @@
           <div class="col-sm-6">
             <label for="ApellidoAcu" class="form-label">Apellido del acudiente</label>
             <div class="input-group has-validation">
-              <input name="ApellidoAcu" type="text" class="form-control" id="ApellidoAcu" placeholder="Apellido acudiente" required>
+              <input name="ApellidoAcu" type="text" class="form-control" id="ApellidoAcu"
+                placeholder="Apellido acudiente" required>
               <div class="invalid-feedback">
                 Se requiere un apellido válida.
               </div>
@@ -598,32 +621,44 @@
           </div>
           <div class="col-md-6">
             <label for="Parentesco" class="form-label">Parentesco</label>
-            <select name="Parentesco" class="form-select" id="Parentesco" required>
+            <select name="Parentesco" class="form-select" id="Parentesco" onchange="mostrarCampoOtro()" required>
               <option value="">Elegir...</option>
               <option value="Padre">Padre</option>
               <option value="Madre">Madre</option>
               <option value="Esposo/a">Esposo/a</option>
               <option value="Abuelo/a">Abuelo/a</option>
               <option value="Tio/a">Tio/a</option>
-              <option value="Otro">Otro (Escribalo ->)</option>
+              <option value="Otro">Otro</option>
             </select>
-            <div class="invalid-feedback">
-              Se requiere un parentesco válida.
-            </div>
           </div>
-          <div class="col-6">
+          
+          <div class="col-6" id="campoOtro" style="display: none;">
             <label for="Otro" class="form-label">Otro parentesco</label>
             <div class="input-group has-validation">
-              <input name="Otro" type="text" class="form-control" id="Otro" placeholder="Parentesco" required>
+              <input name="Otro" type="text" class="form-control" id="Otro" placeholder="Parentesco">
               <div class="invalid-feedback">
                 Se requiere un valor válido.
               </div>
             </div>
           </div>
+          <script>
+            function mostrarCampoOtro() {
+              var select = document.getElementById("Parentesco");
+              var otroCampo = document.getElementById("campoOtro");
+          
+              if (select.value === "Otro") {
+                otroCampo.style.display = "block";
+                document.getElementById("Otro").required = true;
+              } else {
+                otroCampo.style.display = "none";
+                document.getElementById("Otro").required = false;
+              }
+            }
+          </script>          
           <div class="py-4 d-flex justify-content-between">
             <button id="nuevoUsuario" type="button" class="btn btn-primary mr-auto">Nuevo Usuario</button>
             <script type="text/javascript">
-              document.getElementById("nuevoUsuario").addEventListener("click", function() {
+              document.getElementById("nuevoUsuario").addEventListener("click", function () {
                 document.getElementById("ApellidoAcu").value = "";
                 document.getElementById("ApellidoApre").value = "";
                 document.getElementById("Barrio").value = "";
@@ -644,47 +679,72 @@
                 document.getElementById("Otro").value = "";
                 document.getElementById("Programa").value = "";
                 document.getElementById("TipoDocumento").value = "";
+                document.getElementById("printNombres").value = "";
+                document.getElementById("printApellidos").value = "";
               });
             </script>
-            <a  type="button" class="btn btn-success" onclick="guardar()">Guardar usuario</a>
-            <button type="button" class="btn btn-danger ml-auto">Cancelar</button>
-        </div>        
+            <a type="button" class="btn btn-success" onclick="guardar()">Guardar usuario</a>
+            <button type="button" class="btn btn-danger ml-auto" onclick="cancelar()">Cancelar</button>
+            <script>
+              function cancelar() {
+                swal({
+                  title: "¿Estás seguro?",
+                  text: "Todos los datos registrados se borrarán.",
+                  icon: "warning",
+                  buttons: ["Cancelar", "Sí, cancelar"],
+                  dangerMode: true,
+                })
+                .then((willDelete) => {
+                  if (willDelete) {
+                    swal("Se eliminaron los datos.", {
+                      icon: "success",
+                    });
+                    
+                  } else {
+                    swal("Los datos aún siguen registrados.");
+                  }
+                });
+              }
+            </script>
+          </div>
         </div>
       </form>
-  </div>
-  <div class="container-fluid">
-    <div>
-    <footer class="d-flex flex-wrap align-items-center py-3 my-4 border-top" style="padding: 20%;">
-      <p class="col-md-4 mb-0 text-muted">&copy; 2023 Julian Amado</p>
-  
-      <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-        <img src="Resources/LogoSENA.png" alt="" width="20%" height="20%">
-      </a>
-  
-      <ul class="nav col-md-4 justify-content-end">
-        <p class="px-2 text-muted">2672886</p>
-        <p class="px-2 text-muted">Bases de datos NoSQL</p>
-        
-      </ul>
-    </footer>
     </div>
-  </div>
-  <!-- Bootstrap -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-    </script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-    </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
-    </script>
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore-compat.js"></script>
-  <script src="Configurar.js"></script>
-  <script src="Guardar.js"></script>
+    <div class="container-fluid">
+      <div>
+        <footer class="d-flex flex-wrap align-items-center py-3 my-4 border-top" style="padding: 20%;">
+          <p class="col-md-4 mb-0 text-muted">&copy; 2023 Julian Amado</p>
+
+          <a
+            class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+            <img src="Resources/LogoSENA.png" alt="" width="20%" height="20%">
+          </a>
+
+          <ul class="nav col-md-4 justify-content-end">
+            <p class="px-2 text-muted">2672886</p>
+            <p class="px-2 text-muted">Bases de datos NoSQL</p>
+
+          </ul>
+        </footer>
+      </div>
+    </div>
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+      </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+      </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
+      </script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore-compat.js"></script>
+    <script src="Configurar.js"></script>
+    <script src="Consultar.js"></script>
+    <script src="Guardar.js"></script>
 </body>
-  
+
 
 </html>
