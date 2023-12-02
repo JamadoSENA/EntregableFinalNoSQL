@@ -13,7 +13,7 @@ function guardar() {
     const Municipio = document.getElementById("Municipio").value;
     const NombreAcudiente = document.getElementById("NombreAcu").value;
     const NombreAprendiz = document.getElementById("NombreApre").value;
-    const NumeroDocumento = document.getElementById("Documento").value;
+    const NumeroDocumento = parseInt(document.getElementById("Documento").value, 10);
     const NumeroTelefono = document.getElementById("Telefono").value;
     const Otro = document.getElementById("Otro").value;
     const Parentesco = document.getElementById("Parentesco").value;
@@ -30,8 +30,8 @@ function guardar() {
             } else if (ApellidoAcudiente && ApellidoAprendiz && Barrio && Colegio &&
                 CorreoElectronico && Departamento && DireccionResidencia &&
                 Edad && FechaNacimiento && Jornada && Municipio && NombreAcudiente &&
-                NombreAprendiz && NumeroDocumento && NumeroTelefono &&
-                Otro && Parentesco && Programa && TipoDocumento
+                NombreAprendiz && NumeroDocumento && NumeroTelefono && Parentesco && 
+                Programa && TipoDocumento
             ) {
                 swal({
                     title: "¿Estás seguro de guardar estos datos?",
@@ -42,7 +42,6 @@ function guardar() {
                 })
                     .then((willSave) => {
                         if (willSave) {
-                            // Guardar datos en Firestore
                             db.collection("aprendices")
                                 .add({
                                     ApellidoAcudiente,
@@ -58,7 +57,7 @@ function guardar() {
                                     Municipio,
                                     NombreAcudiente,
                                     NombreAprendiz,
-                                    NumeroDocumento,
+                                    NumeroDocumento: NumeroDocumento,
                                     NumeroTelefono,
                                     Otro,
                                     Parentesco,

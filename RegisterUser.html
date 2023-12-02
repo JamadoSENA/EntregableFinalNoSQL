@@ -34,18 +34,10 @@
       </div>
       <div class="col-sm-6 d-flex justify-content-end">
         <div class="py-4">
-          <a type="button" onclick="consultar()" class="btn btn-secondary">Consultar</a>
+          <a href="DataTable.html" type="button" class="btn btn-secondary">Consultar</a>
         </div>
       </div>
     </div>
-    <!--
-    <div class="row align-items-center">
-      <div class="col">
-          <h3 id="printNombres"></h3>
-          <h3 id="printApellidos"></h3>
-      </div>
-    </div>
-     Consultar -->
     <div class="col-12 custom-form">
       <form id="formulario_aprendiz" class="needs-validation" novalidate>
         <div class="row g-3">
@@ -64,7 +56,7 @@
           <div class="col-sm-6">
             <label id="" for="document" class="form-label">Número de documento</label>
             <input name="Documento" type="number" class="form-control" id="Documento" placeholder="Documento aprendiz"
-              value="" required>
+              required>
             <div class="invalid-feedback">
               Se requiere un numero válido.
             </div>
@@ -696,6 +688,28 @@
                 })
                 .then((willDelete) => {
                   if (willDelete) {
+                    document.getElementById("ApellidoAcu").value = "";
+                    document.getElementById("ApellidoApre").value = "";
+                    document.getElementById("Barrio").value = "";
+                    document.getElementById("Colegio").value = "";
+                    document.getElementById("Correo").value = "";
+                    document.getElementById("Barrio").value = "";
+                    document.getElementById("Departamento").value = "";
+                    document.getElementById("Direccion").value = "";
+                    document.getElementById("Edad").value = "";
+                    document.getElementById("FechaNacimiento").value = "";
+                    document.getElementById("Jornada").value = "";
+                    document.getElementById("Municipio").value = "";
+                    document.getElementById("NombreAcu").value = "";
+                    document.getElementById("NombreApre").value = "";
+                    document.getElementById("Documento").value = "";
+                    document.getElementById("Telefono").value = "";
+                    document.getElementById("Parentesco").value = "";
+                    document.getElementById("Otro").value = "";
+                    document.getElementById("Programa").value = "";
+                    document.getElementById("TipoDocumento").value = "";
+                    document.getElementById("printNombres").value = "";
+                    document.getElementById("printApellidos").value = "";
                     swal("Se eliminaron los datos.", {
                       icon: "success",
                     });
@@ -710,6 +724,7 @@
         </div>
       </form>
     </div>
+  </div>
     <div class="container-fluid">
       <div>
         <footer class="d-flex flex-wrap align-items-center py-3 my-4 border-top" style="padding: 20%;">
@@ -742,7 +757,6 @@
     <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore-compat.js"></script>
     <script src="Configurar.js"></script>
-    <script src="Consultar.js"></script>
     <script src="Guardar.js"></script>
 </body>
 
